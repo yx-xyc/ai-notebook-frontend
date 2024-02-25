@@ -9,7 +9,7 @@ const NoteActions: React.FC<NoteActionsProps> = ({ noteId }) => {
     const [result, setResult] = useState('');
 
     const generateInsight = () => {
-        fetch(`http://localhost:8080/note/${noteId}/genInsight`)
+        fetch(`http://localhost:8080/note/${noteId}/insight`)
             .then(response => response.text())
             .then(data => {
                 console.log(data);
@@ -19,7 +19,7 @@ const NoteActions: React.FC<NoteActionsProps> = ({ noteId }) => {
     };
 
     const generateSummary = () => {
-        fetch(`http://localhost:8080/note/${noteId}/genSummary`)
+        fetch(`http://localhost:8080/note/${noteId}/summary`)
             .then(response => response.text())
             .then(data => {
                 console.log(data);
