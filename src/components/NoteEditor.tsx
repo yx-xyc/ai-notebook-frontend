@@ -23,7 +23,6 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ initialContent, noteId, userId 
             };
             stompService.send(`/app/track-mouse-click/${userId}/${noteId}`, JSON.stringify(mouseClickData));
         };
-
         // Track keypresses
         const trackKeypress = (event: { key: any; }) => {
             const keypressData = {
@@ -31,10 +30,8 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ initialContent, noteId, userId 
             };
             stompService.send(`/app/track-keystroke/${userId}/${noteId}`, JSON.stringify(keypressData));
         };
-
         document.addEventListener('click', trackMouseClick);
         document.addEventListener('keypress', trackKeypress);
-
         // Cleanup event listeners when the component unmounts
         return () => {
             document.removeEventListener('click', trackMouseClick);
