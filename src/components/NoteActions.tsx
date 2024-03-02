@@ -1,5 +1,8 @@
 // src/components/NoteActions.tsx
 import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 interface NoteActionsProps {
     noteId: string; // Assuming you will pass noteId as a prop
@@ -29,15 +32,21 @@ const NoteActions: React.FC<NoteActionsProps> = ({ noteId }) => {
     };
 
     return (
-        <div>
-            <button className="button" onClick={generateInsight}>Generate Insight</button>
-            <button className="button" onClick={generateSummary}>Generate Summary</button>
-            {result && (
-                <div id="sidebar" style={{ color: typeof result === 'string' ? 'black' : 'red' }}>
-                    {typeof result === 'string' ? result : 'The fetched data is not in text format.'}
-                </div>
-            )}
-        </div>
+        <Box>
+        <Button variant="contained" color="primary" onClick={generateInsight}>
+            Generate Insight
+        </Button>
+        <Button variant="contained" color="primary" onClick={generateSummary}>
+            Generate Summary
+        </Button>
+        {result && (
+            <Box sx={{ mt: 2, color: typeof result === 'string' ? 'text.primary' : 'error.main' }}>
+            <Typography variant="body1">
+                {typeof result === 'string' ? result : 'The fetched data is not in text format.'}
+            </Typography>
+            </Box>
+        )}
+        </Box>
     );
 };
 
