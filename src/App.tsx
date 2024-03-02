@@ -1,6 +1,7 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
 import NotePage from './pages/NotePage';
+import NotebookPage from './pages/NotebookPage';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -33,6 +34,9 @@ function App() {
     <Routes>
       <Route path="/" element={<h1>Hello world!</h1>} />
       <Route path="/users/:userId/notes/:noteId" element={<NotePage />} />
+      <Route path="/users/:userId/notebooks/:notebookId" element={<NotebookPage />} />
+      <Route path="/users/:userId" element={<h1>User</h1>} />
+      <Route path="*" element={<h1>Not found</h1>} />
     </Routes>
   )
 }
