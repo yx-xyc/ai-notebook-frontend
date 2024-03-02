@@ -42,7 +42,11 @@ const NotePage: React.FC = () => {
     };
 
     return (
-        <Container className="container">
+        <Container className="container"   sx={{ 
+            maxWidth: 'none', // This removes the max-width restriction
+            // If you want a specific max-width, you can set it like so:
+            // maxWidth: { sm: '100%', md: '1200px', lg: '1400px', xl: '1600px' }
+        }}>
             <Typography variant="h2" component="h1" gutterBottom id="noteTitle">{note.title || 'Note Title'}</Typography>
             {noteId && userId && <NoteEditor initialContent={note.content} noteId={note.id} userId={userId} />}
             <Box>

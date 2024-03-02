@@ -3,6 +3,8 @@ interface Note {
     id: string;
     title: string;
     content: string;
+    createdAt: number;
+    updatedAt: number;
 }
 
 export const fetchNote = async (noteId: string): Promise<Note> => {
@@ -12,6 +14,14 @@ export const fetchNote = async (noteId: string): Promise<Note> => {
     }
     return await response.json();
 };
+
+export const fetchNotesInNotebook = async (notebookId: string): Promise<Note[]> => {
+    const response = await fetch(`${BACKEND_BASE_URL}/notebooks/${notebookId}`);
+    if (!response.ok) {
+        throw new Error(`Error fetching notes in notebook: ${response.statusText}`);
+    }
+    return await response.json();
+}
 
 export const generateInsight = async (noteId: string): Promise<string> => {
     const response = await fetch(`${BACKEND_BASE_URL}/note/${noteId}/insight`);
