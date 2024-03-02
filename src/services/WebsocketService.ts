@@ -1,13 +1,13 @@
 // src/services/stompService.ts
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-
+import { BACKEND_BASE_URL } from '../config';
 export class StompService {
     private client: Client;
 
     constructor() {
         this.client = new Client({
-        webSocketFactory: () => new SockJS('http://localhost:8080/note-auto-save'),
+        webSocketFactory: () => new SockJS(`${BACKEND_BASE_URL}/note-auto-save`),
             reconnectDelay: 5000,
             onConnect: () => {
                 console.log('Connected to STOMP');

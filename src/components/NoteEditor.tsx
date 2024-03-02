@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import Box from '@mui/material/Box';
-import { StompService } from '../services/websocketService';
+import { StompService } from '../services/WebsocketService';
 import { debounce } from 'lodash';
 
 interface NoteEditorProps {
@@ -26,7 +26,6 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ initialContent, noteId, userId 
             };
             stompService.send(`/app/track-mouse-click/${userId}/${noteId}`, JSON.stringify(mouseClickData));
         };
-        // Track keypresses
         const trackKeypress = (event: { key: any; }) => {
             const keypressData = {
                 key: event.key,
