@@ -1,5 +1,7 @@
 // src/components/NoteEditor.tsx
 import React, { useState, useEffect, useCallback } from 'react';
+import MDEditor from '@uiw/react-md-editor';
+import Box from '@mui/material/Box';
 import { StompService } from '../services/websocketService';
 import { debounce } from 'lodash';
 
@@ -13,6 +15,7 @@ const stompService = new StompService();
 
 const NoteEditor: React.FC<NoteEditorProps> = ({ initialContent, noteId, userId }) => {
     const [content, setContent] = useState(initialContent);
+
     useEffect(() => {
         stompService.connect();
         const trackMouseClick = (event: MouseEvent) => {
@@ -44,11 +47,6 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ initialContent, noteId, userId 
         setContent(initialContent);
     }, [initialContent]);
 
-    const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const newContent = event.target.value;
-        setContent(newContent);
-        debouncedSaveNote(newContent);
-    };
     const debouncedSaveNote = useCallback(
         debounce((newContent: string) => {
             stompService.saveNote(newContent, noteId);
@@ -56,12 +54,31 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ initialContent, noteId, userId 
         [noteId, stompService] // Recreate the debounced function if noteId changes
     );
 
+    const handleContentChange = useCallback((newContent: string | undefined) => {
+        if (typeof newContent === 'string') {
+            setContent(newContent);
+            debouncedSaveNote(newContent);
+        }
+    }, [debouncedSaveNote]);
+
     return (
-        <textarea
-        id="noteContent"
-        value={content}
-        onChange={handleContentChange}
-        />
+        <Box sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            height: '80vh', // Set the height to full viewport height
+            mx: 'auto', // This centers the editor horizontally if it has a max-width
+            width: '100%', // Set the width to full width
+            maxWidth: 1200, // Optional: Constrain the max width for larger screens
+        }}> {/* Using MUI Box for styling */}
+            <MDEditor
+                value={content}
+                onChange={handleContentChange}
+                style={{ 
+                    flexGrow: 1, // Allows the editor to grow and fill the vertical space
+                    minHeight: 0, // Important for flex children to grow correctly in Firefox
+                }}
+            />
+        </Box>
     );
 };
 
