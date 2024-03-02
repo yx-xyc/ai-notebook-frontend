@@ -1,3 +1,4 @@
+import { BACKEND_BASE_URL } from '../config'
 interface Note {
     id: string;
     title: string;
@@ -5,7 +6,7 @@ interface Note {
 }
 
 export const fetchNote = async (noteId: string): Promise<Note> => {
-    const response = await fetch(`http://localhost:8080/notes/${noteId}`);
+    const response = await fetch(`${BACKEND_BASE_URL}/notes/${noteId}`);
     if (!response.ok) {
         throw new Error(`Error fetching note: ${response.statusText}`);
     }
@@ -13,7 +14,7 @@ export const fetchNote = async (noteId: string): Promise<Note> => {
 };
 
 export const generateInsight = async (noteId: string): Promise<string> => {
-    const response = await fetch(`http://localhost:8080/note/${noteId}/genInsight`);
+    const response = await fetch(`${BACKEND_BASE_URL}/note/${noteId}/insight`);
     if (!response.ok) {
         throw new Error(`Error generating insight: ${response.statusText}`);
     }
@@ -21,7 +22,7 @@ export const generateInsight = async (noteId: string): Promise<string> => {
 };
 
 export const generateSummary = async (noteId: string): Promise<string> => {
-    const response = await fetch(`http://localhost:8080/note/${noteId}/genSummary`);
+    const response = await fetch(`${BACKEND_BASE_URL}/note/${noteId}/summary`);
     if (!response.ok) {
         throw new Error(`Error generating summary: ${response.statusText}`);
     }
