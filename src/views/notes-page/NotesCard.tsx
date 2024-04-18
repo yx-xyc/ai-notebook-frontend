@@ -1,13 +1,13 @@
 import React from 'react';
 
 // material-ui
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import Pagination from '@mui/material/Pagination';
+// import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 
 // project imports
@@ -19,7 +19,7 @@ import { getSimpleCards, filterSimpleCards } from 'store/slices/user';
 
 // assets
 import { IconSearch } from '@tabler/icons-react';
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+// import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
 
 // ==============================|| USER CARD STYLE 2 ||============================== //
@@ -44,14 +44,14 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
     const notes = NotesCardProps.notes;
     // const [users, setUsers] = React.useState<UserSimpleCardProps[]>([]);
     // const { simpleCards } = useSelector((state) => state.user);
-    const [anchorEl, setAnchorEl] = React.useState<Element | (() => Element) | null | undefined>(null);
-    const handleClick = (event: React.MouseEvent) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const [anchorEl, setAnchorEl] = React.useState<Element | (() => Element) | null | undefined>(null);
+    // const handleClick = (event: React.MouseEvent) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
 
     // React.useEffect(() => {
     //     setUsers(simpleCards);
@@ -116,7 +116,7 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
                 {notesResult}
                 <Grid item xs={12}>
                     <Grid container justifyContent="space-between" spacing={gridSpacing}>
-                        <Grid item>
+                        {/* <Grid item>
                             <Pagination count={10} color="primary" />
                         </Grid>
                         <Grid item>
@@ -150,7 +150,7 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
                                 <MenuItem onClick={handleClose}> 20 Rows</MenuItem>
                                 <MenuItem onClick={handleClose}> 30 Rows </MenuItem>
                             </Menu>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 </Grid>
             </Grid>

@@ -27,7 +27,7 @@ const NotebookPage: React.FC = () => {
             .then(notes => setNotes(notes))
             .catch(console.error);
         console.log(notes);
-    }, [notebookId, notes]);
+    }, [notebookId]);
 
     return (
         <Container sx={{ maxWidth: 'lg' }}>
