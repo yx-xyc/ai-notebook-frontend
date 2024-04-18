@@ -143,11 +143,11 @@ const NoteSimpleCard = ({ userId, noteId, title, createdAt, updatedAt }: NoteSim
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                        <Typography variant="caption" color="textSecondary" display="block" >
+                <Grid item >
+                        <Typography color="textSecondary"  >
                             Created: {format(new Date(createdAt), 'Pp')}
                         </Typography>
-                        <Typography variant="caption" color="textSecondary" display="block" >
+                        <Typography color="textSecondary"  >
                             Updated: {format(new Date(updatedAt), 'Pp')}
                         </Typography>
                 </Grid>

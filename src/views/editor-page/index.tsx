@@ -22,8 +22,7 @@ const EditorPage: React.FC = () => {
     }, [noteId]);
 
     return (
-        <MainCard title="Editor">
-            <Typography variant="h2" component="h1" gutterBottom id="noteTitle">{note.title || 'Note Title'}</Typography>
+        <MainCard title={note.title }>
             {noteId && userId && <NoteEditor initialContent={note.content} noteId={note.id} userId={userId} />}
         </MainCard>    
     );

@@ -112,9 +112,9 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
                 </Grid>
             }
         >
-            <Grid container direction="row" spacing={gridSpacing}>
+            <Grid container direction="row" spacing={gridSpacing} >
                 {notesResult}
-                <Grid item xs={12}>
+                <Grid item>
                     <Grid container justifyContent="space-between" spacing={gridSpacing}>
                         {/* <Grid item>
                             <Pagination count={10} color="primary" />

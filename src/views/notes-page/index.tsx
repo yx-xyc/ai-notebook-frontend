@@ -1,10 +1,11 @@
 // src/NotebookPage.tsx
 import React, { useState, useEffect } from 'react';
 // import { useParams } from 'react-router-dom';
-import { Container } from '@mui/material';
+// import { Container } from '@mui/material';
 
 import { fetchNotesInNotebook } from 'utils/noteServices'; // Make sure to create this service
 import NotesCard from './NotesCard';
+import MainCard from 'ui-component/cards/MainCard';
 
 interface Note {
     id: string;
@@ -30,9 +31,7 @@ const NotebookPage: React.FC = () => {
     }, [notebookId]);
 
     return (
-        <Container sx={{ maxWidth: 'lg' }}>
-            <NotesCard userId={userId} notebook={notebookId} notes={notes}/>
-        </Container>
+        <NotesCard userId={userId} notebook={notebookId} notes={notes}/>
     );
 };
 
