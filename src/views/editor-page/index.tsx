@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import NoteEditor from './NoteEditor';
 import { fetchNote } from 'utils/noteServices';

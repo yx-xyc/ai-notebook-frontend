@@ -34,13 +34,13 @@ interface Note {
 
 interface NotesCardProps {
     userId: string;
-    notebook: string;
+    notebookId: string;
     notes: Note[];
 }
 
 const NotesCard = (NotesCardProps: NotesCardProps) => {
     const userId = NotesCardProps.userId;
-    const notebook = NotesCardProps.notebook;
+    const notebookId = NotesCardProps.notebookId;
     const notes = NotesCardProps.notes;
     // const [users, setUsers] = React.useState<UserSimpleCardProps[]>([]);
     // const { simpleCards } = useSelector((state) => state.user);
@@ -93,7 +93,7 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
             title={
                 <Grid container alignItems="center" justifyContent="space-between" spacing={gridSpacing}>
                     <Grid item>
-                        <Typography variant="h3">{notebook}</Typography>
+                        <Typography variant="h3">{notebookId}</Typography>
                     </Grid>
                     <Grid item>
                         <OutlinedInput

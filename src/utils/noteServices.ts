@@ -9,7 +9,11 @@ interface Note {
     createdAt: number;
     updatedAt: number;
 }
-  
+
+interface Notebooks {
+
+}
+
 // Function to fetch a single note
 export const fetchNote = async (noteId: string): Promise<Note> => {
     try {
@@ -37,6 +41,10 @@ export const fetchNotesInNotebook = async (notebookId: string): Promise<Note[]> 
     }
 }
 }
+
+// export const fetchNotebooksGivenUser = async (userId: string): Promise<Notebooks[]> => {
+
+// }
 
 // Function to generate insight for a note
 export const generateInsight = async (noteId: string): Promise<string> => {
