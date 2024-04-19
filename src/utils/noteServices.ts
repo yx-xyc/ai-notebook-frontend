@@ -10,9 +10,9 @@ interface Note {
     updatedAt: number;
 }
 
-interface Notebooks {
+// interface Notebooks {
 
-}
+// }
 
 // Function to fetch a single note
 export const fetchNote = async (noteId: string): Promise<Note> => {
