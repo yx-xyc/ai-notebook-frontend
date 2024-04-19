@@ -19,7 +19,7 @@ const editorPage: NavItemType = {
     title: <FormattedMessage id="notes-page" />,
     icon: icons.IconBrandChrome,
     type: 'group',
-    url: '/notes-page'
+    url: '/users/f9a6072a-2e06-4f14-a1ff-3fd4096c799f/notebooks/afc457b0-90a9-439d-8591-d4d7264bec0a'
 };
 
 export default editorPage;
