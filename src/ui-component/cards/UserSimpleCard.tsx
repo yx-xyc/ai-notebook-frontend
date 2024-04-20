@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { format } from 'date-fns';
+
 // material-ui
-import { useTheme } from '@mui/material/styles';
-// import Button from '@mui/material/Button';
+import { useTheme, styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-// import Chip from '@mui/material/Chip';
+import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -13,74 +12,66 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 // project imports
-// import Avatar from '../extended/Avatar';
+import Avatar from '../extended/Avatar';
 import { gridSpacing } from 'store/constant';
-// import { getImageUrl, ImagePath } from 'utils/getImageUrl';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import TwitterIcon from '@mui/icons-material/Twitter';
-// import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 // types
 import { ThemeMode } from 'types/config';
-// import { UserSimpleCardProps } from 'types/user';
+import { UserSimpleCardProps } from 'types/user';
 
 // styles
-// const FacebookWrapper = styled(Button)({
-//     padding: 8,
-//     background: 'rgba(66, 103, 178, 0.2)',
-//     '& svg': {
-//         color: '#4267B2'
-//     },
-//     '&:hover': {
-//         background: '#4267B2',
-//         '& svg': {
-//             color: '#fff'
-//         }
-//     }
-// });
+const FacebookWrapper = styled(Button)({
+    padding: 8,
+    background: 'rgba(66, 103, 178, 0.2)',
+    '& svg': {
+        color: '#4267B2'
+    },
+    '&:hover': {
+        background: '#4267B2',
+        '& svg': {
+            color: '#fff'
+        }
+    }
+});
 
-// const TwitterWrapper = styled(Button)({
-//     padding: 8,
-//     background: 'rgba(29, 161, 242, 0.2)',
-//     '& svg': {
-//         color: '#1DA1F2'
-//     },
-//     '&:hover': {
-//         background: '#1DA1F2',
-//         '& svg': {
-//             color: '#fff'
-//         }
-//     }
-// });
+const TwitterWrapper = styled(Button)({
+    padding: 8,
+    background: 'rgba(29, 161, 242, 0.2)',
+    '& svg': {
+        color: '#1DA1F2'
+    },
+    '&:hover': {
+        background: '#1DA1F2',
+        '& svg': {
+            color: '#fff'
+        }
+    }
+});
 
-// const LinkedInWrapper = styled(Button)({
-//     padding: 8,
-//     background: 'rgba(14, 118, 168, 0.12)',
-//     '& svg': {
-//         color: '#0E76A8'
-//     },
-//     '&:hover': {
-//         background: '#0E76A8',
-//         '& svg': {
-//             color: '#fff'
-//         }
-//     }
-// });
+const LinkedInWrapper = styled(Button)({
+    padding: 8,
+    background: 'rgba(14, 118, 168, 0.12)',
+    '& svg': {
+        color: '#0E76A8'
+    },
+    '&:hover': {
+        background: '#0E76A8',
+        '& svg': {
+            color: '#fff'
+        }
+    }
+});
 
 // ==============================|| USER SIMPLE CARD ||============================== //
 
-interface NoteSimpleCardProps {
-    userId: string;
-    noteId: string;
-    title: string;
-    createdAt: number;
-    updatedAt: number;
-}
-
-const NoteSimpleCard = ({ userId, noteId, title, createdAt, updatedAt }: NoteSimpleCardProps) => {
+const UserSimpleCard = ({ avatar, name, status }: UserSimpleCardProps) => {
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState<Element | (() => Element) | null | undefined>(null);
@@ -104,12 +95,10 @@ const NoteSimpleCard = ({ userId, noteId, title, createdAt, updatedAt }: NoteSim
             }}
         >
             <Grid container spacing={gridSpacing}>
-                <Grid item xs={12} alignItems="center">
+                <Grid item xs={12}>
                     <Grid container spacing={gridSpacing}>
                         <Grid item xs zeroMinWidth>
-                            <Link to={`/users/${userId}/notes/${noteId}`}>
-                                <Typography variant="h4">{title}</Typography>
-                            </Link>
+                            <Avatar alt={name} src={avatar && getImageUrl(`${avatar}`, ImagePath.USERS)} sx={{ width: 72, height: 72 }} />
                         </Grid>
                         <Grid item>
                             <IconButton size="small" sx={{ mt: -0.75, mr: -0.75 }} onClick={handleClick}>
@@ -143,17 +132,56 @@ const NoteSimpleCard = ({ userId, noteId, title, createdAt, updatedAt }: NoteSim
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item >
-                        <Typography color="textSecondary"  >
-                            Created: {format(new Date(createdAt), 'Pp')}
-                        </Typography>
-                        <Typography color="textSecondary"  >
-                            Updated: {format(new Date(updatedAt), 'Pp')}
-                        </Typography>
+                <Grid item xs={12} alignItems="center">
+                    <Grid container spacing={gridSpacing}>
+                        <Grid item xs zeroMinWidth>
+                            <Typography variant="h4">{name}</Typography>
+                        </Grid>
+                        <Grid item>
+                            {status === 'Active' ? (
+                                <Chip
+                                    label="Active"
+                                    size="small"
+                                    sx={{
+                                        bgcolor: theme.palette.mode === ThemeMode.DARK ? 'dark.main' : 'success.light',
+                                        color: 'success.dark'
+                                    }}
+                                />
+                            ) : (
+                                <Chip
+                                    label="Rejected"
+                                    size="small"
+                                    sx={{
+                                        bgcolor: theme.palette.mode === ThemeMode.DARK ? 'dark.main' : 'error.light',
+                                        color: 'error.dark'
+                                    }}
+                                />
+                            )}
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={4}>
+                            <FacebookWrapper fullWidth>
+                                <FacebookIcon fontSize="small" />
+                            </FacebookWrapper>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <TwitterWrapper fullWidth>
+                                <TwitterIcon fontSize="small" />
+                            </TwitterWrapper>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <LinkedInWrapper fullWidth>
+                                <LinkedInIcon fontSize="small" />
+                            </LinkedInWrapper>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </Card>
     );
 };
 
-export default NoteSimpleCard;
+export default UserSimpleCard;

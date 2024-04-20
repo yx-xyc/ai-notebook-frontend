@@ -1,13 +1,9 @@
 import React from 'react';
 
 // material-ui
-// import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
-// import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
-// import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 
 // project imports
@@ -15,33 +11,29 @@ import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 import { dispatch } from 'store';
 import { getSimpleCards, filterSimpleCards } from 'store/slices/user';
-import NoteCard from './NoteCard';
-
+import NotebookCard from './NotebookCard';
 // assets
 import { IconSearch } from '@tabler/icons-react';
-// import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
 
 // ==============================|| USER CARD STYLE 2 ||============================== //
 
-interface Note {
+interface Notebook {
     id: string;
     title: string;
-    content: string;
+    category: string;
     createdAt: number;
     updatedAt: number;
 }
 
 interface NotesCardProps {
     userId: string;
-    notebookId: string;
-    notes: Note[];
+    notebooks: Notebook[];
 }
 
-const NotesCard = (NotesCardProps: NotesCardProps) => {
+const NotebooksCard = (NotesCardProps: NotesCardProps) => {
     const userId = NotesCardProps.userId;
-    const notebookId = NotesCardProps.notebookId;
-    const notes = NotesCardProps.notes;
+    const notebooks = NotesCardProps.notebooks;
     // const [users, setUsers] = React.useState<UserSimpleCardProps[]>([]);
     // const { simpleCards } = useSelector((state) => state.user);
     // const [anchorEl, setAnchorEl] = React.useState<Element | (() => Element) | null | undefined>(null);
@@ -73,16 +65,17 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
         }
     };
 
-    let notesResult: React.ReactElement | React.ReactElement[] = <></>;
-    if (notes) {
-        notesResult = notes.map((note, index) => (
+    let notebooksResult: React.ReactElement | React.ReactElement[] = <></>;
+    if (notebooks) {
+        notebooksResult = notebooks.map((notebook, index) => (
             <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-                <NoteCard
+                <NotebookCard
                     userId={userId} 
-                    noteId={note.id}
-                    title={note.title}
-                    createdAt={note.createdAt}
-                    updatedAt={note.updatedAt}
+                    notebookId={notebook.id}
+                    title={notebook.title}
+                    category={notebook.category}
+                    createdAt={notebook.createdAt}
+                    updatedAt={notebook.updatedAt}
                 />
             </Grid>
         ));
@@ -93,7 +86,7 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
             title={
                 <Grid container alignItems="center" justifyContent="space-between" spacing={gridSpacing}>
                     <Grid item>
-                        <Typography variant="h3">{notebookId}</Typography>
+                        <Typography variant="h3">{userId}</Typography>
                     </Grid>
                     <Grid item>
                         <OutlinedInput
@@ -113,10 +106,10 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
             }
         >
             <Grid container direction="row" spacing={gridSpacing} >
-                {notesResult}
-                <Grid item>
+                {notebooksResult}
+                {/* <Grid item>
                     <Grid container justifyContent="space-between" spacing={gridSpacing}>
-                        {/* <Grid item>
+                        <Grid item>
                             <Pagination count={10} color="primary" />
                         </Grid>
                         <Grid item>
@@ -150,12 +143,12 @@ const NotesCard = (NotesCardProps: NotesCardProps) => {
                                 <MenuItem onClick={handleClose}> 20 Rows</MenuItem>
                                 <MenuItem onClick={handleClose}> 30 Rows </MenuItem>
                             </Menu>
-                        </Grid> */}
+                        </Grid>
                     </Grid>
-                </Grid>
+                </Grid> */}
             </Grid>
         </MainCard>
     );
 };
 
-export default NotesCard;
+export default NotebooksCard;
