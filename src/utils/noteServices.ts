@@ -46,6 +46,18 @@ export const fetchNotesInNotebook = async (notebookId: string): Promise<Note[]> 
 }
 }
 
+export const deleteNote = async (noteId: string): Promise<void> => {
+    try {
+        await noteServices.delete(`/note-api/note/${noteId}`);
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response) {
+        throw new Error(`Error deleting note: ${error.response.statusText}`);
+        } else {
+        throw new Error(`Error deleting note: ${error}`);
+        }
+    }
+}
+
 export const fetchNotebooksGivenUser = async (userId: string): Promise<Notebook[]> => {
     try {
         const response = await noteServices.get<Notebook[]>(`/notebook-api/user/${userId}`);

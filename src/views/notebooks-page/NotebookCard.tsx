@@ -92,6 +92,11 @@ const NotebookSimpleCard = ({ userId, notebookId, title, category, createdAt, up
         setAnchorEl(null);
     };
 
+    const handleEdit = () => {
+        console.error('Edit Clicked');
+        setAnchorEl(null);
+    };
+
     return (
         <Card
             sx={{
@@ -139,7 +144,7 @@ const NotebookSimpleCard = ({ userId, notebookId, title, category, createdAt, up
                                     horizontal: 'right'
                                 }}
                             >
-                                <MenuItem onClick={handleClose}>Edit</MenuItem>
+                                <MenuItem onClick={handleEdit}>Edit</MenuItem>
                                 <MenuItem onClick={handleClose}>Delete</MenuItem>
                             </Menu>
                         </Grid>

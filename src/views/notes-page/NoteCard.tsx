@@ -27,6 +27,8 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import { ThemeMode } from 'types/config';
 // import { UserSimpleCardProps } from 'types/user';
 
+import { deleteNote } from 'utils/noteServices';
+
 // styles
 // const FacebookWrapper = styled(Button)({
 //     padding: 8,
@@ -91,6 +93,16 @@ const NoteSimpleCard = ({ userId, noteId, title, createdAt, updatedAt }: NoteSim
         setAnchorEl(null);
     };
 
+    const handleDelete = () => {
+        deleteNote(noteId);
+        setAnchorEl(null);
+    }
+
+    const handleEdit = () => {
+        
+        setAnchorEl(null);
+    }
+
     return (
         <Card
             sx={{
@@ -138,7 +150,7 @@ const NoteSimpleCard = ({ userId, noteId, title, createdAt, updatedAt }: NoteSim
                                 }}
                             >
                                 <MenuItem onClick={handleClose}>Edit</MenuItem>
-                                <MenuItem onClick={handleClose}>Delete</MenuItem>
+                                <MenuItem onClick={handleDelete}>Delete</MenuItem>
                             </Menu>
                         </Grid>
                     </Grid>
