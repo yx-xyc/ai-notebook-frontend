@@ -14,12 +14,12 @@ import { NavItemType } from 'types';
 const icons = {
     IconBrandChrome
 };
-const notesPage: NavItemType = {
-    id: 'notes-page',
-    title: <FormattedMessage id="notes-page" />,
+const notebooksPage: NavItemType = {
+    id: 'notebooks-page',
+    title: <FormattedMessage id="notebooks-page" />,
     icon: icons.IconBrandChrome,
     type: 'group',
-    url: '/user/f9a6072a-2e06-4f14-a1ff-3fd4096c799f/notebook/afc457b0-90a9-439d-8591-d4d7264bec0a'
+    url: '/user/123e4567-e89b-12d3-a456-426614174000'
 };
 
-export default notesPage;
+export default notebooksPage;

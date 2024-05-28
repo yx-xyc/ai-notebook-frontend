@@ -33,7 +33,7 @@ export class StompService {
         if (this.client.active) {
             console.log('Saving note');
             this.client.publish({
-                destination: `/app/notes/${noteId}/auto-save`,
+                destination: `/app/note/${noteId}/auto-save`,
                 body: content,
             });
         } else {

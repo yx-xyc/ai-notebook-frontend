@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import NoteEditor from './NoteEditor';
 import { fetchNote } from 'utils/noteServices';
@@ -22,8 +21,7 @@ const EditorPage: React.FC = () => {
     }, [noteId]);
 
     return (
-        <MainCard title="Editor">
-            <Typography variant="h2" component="h1" gutterBottom id="noteTitle">{note.title || 'Note Title'}</Typography>
+        <MainCard title={note.title }>
             {noteId && userId && <NoteEditor initialContent={note.content} noteId={note.id} userId={userId} />}
         </MainCard>    
     );

@@ -9,7 +9,7 @@ import Loadable from 'ui-component/Loadable';
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 const EditorPage = Loadable(lazy(() => import('views/editor-page')));
 const NotesPage = Loadable(lazy(() => import('views/notes-page')));
-
+const NotebooksPage = Loadable(lazy(() => import('views/notebooks-page')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -29,11 +29,15 @@ const MainRoutes = {
             element: <SamplePage />
         },
         {
-            path: '/users/:userId/notes/:noteId',
+            path: '/user/:userId',
+            element: <NotebooksPage />
+        },
+        {
+            path: '/user/:userId/note/:noteId',
             element: <EditorPage />
         },
         {
-            path: '/notes-page',
+            path: '/user/:userId/notebook/:notebookId',
             element: <NotesPage />
         }
     ]
